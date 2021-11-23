@@ -33,7 +33,10 @@ class ReservationController extends Controller
     public function getServices()
     {
         $services = Service::all();
-        return view('front.chooseService', compact('services'));
+        if ($services){
+            return view('front.chooseService', compact('services'));
+        }
+        return redirect()->back()->withErrors(['error' => 'حدث خطأ أعد المحاولة']);
     }
 
     public function saveService(ServiceRequest $request)
@@ -47,8 +50,7 @@ class ReservationController extends Controller
 
     public function store(ReservationRequest $request)
     {
-
-         DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $reservation = new ReservationStoreService();
             if ($reservation->is_user()){
@@ -61,24 +63,31 @@ class ReservationController extends Controller
             DB::rollBack();
            return redirect()->back()->withErrors(['error' => 'حدث خطأ أعد المحاولة']);
         }
-
     }
 
     public function show()
     {
         $reservation = Reservation::where('user_id' , auth()->id())->first();
-        return view('front.my_reserves' , compact('reservation'));
+        if ($reservation){
+            return view('front.my_reserves' , compact('reservation'));
+        }
+        return redirect()->back()->withErrors(['error' => 'حدث خطأ أعد المحاولة']);
     }
 
     public function destroy()
     {
-        auth()->user()->reservations()->delete();
-        return redirect()->route('home');
+        if (auth()->user()->reservations()->delete()){
+            return redirect()->route('home');
+        }
+        return redirect()->back()->withErrors(['error' => 'حدث خطأ أعد المحاولة']);
     }
 
     public function edit()
     {
         session(['updateReservation' => true]);
-        return redirect()->route('chooseService');
+        if (session()->get('updateReservation')) {
+            return redirect()->route('chooseService');
+        }
+        return redirect()->back()->withErrors(['error' => 'حدث خطأ أعد المحاولة']);
     }
 }
