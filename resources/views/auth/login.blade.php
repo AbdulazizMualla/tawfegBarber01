@@ -11,7 +11,7 @@
                             <p class="h1 mb-4">تسجيل الدخول</p>
                             <hr >
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control  mb-4 @error('email') is-invalid @enderror" placeholder="البريد الإلكتروني" id="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input type="text" name="email" class="form-control  mb-4 @error('email') is-invalid @enderror" placeholder="البريد الإلكتروني أو رقم الجوال" id="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
