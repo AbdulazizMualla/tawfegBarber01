@@ -3,6 +3,7 @@
     <p class="header" >عدد المستخدمين: {{$users->count()}}</p>
     <a href="{{route('admin.users.block.index')}}" class="btn btn-info mb-4">المستخدمين المحظورين</a>
     <a href="{{route('admin.users.active.index')}}" class="btn btn-info mb-4">الحسابات الغير مفعله</a>
+    <a href="{{route('admin.users.sendEmail.showViewSendEmail')}}" class="btn btn-info mb-4">إرسال بريد</a>
 @foreach($users as $user)
     <div class="container pt-5  pb-3 text-right d-flex justify-content-center">
         <div class="card" style="width: 18rem;">

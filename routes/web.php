@@ -72,5 +72,12 @@ Route::group(['prefix' => 'admin' , 'middleware' => ['checkRole', 'auth']] , fun
             Route::put('/{user}' , [UserController::class , 'activeUser'])->name('admin.users.active.update');
         });
 
+        Route::group(['prefix' => 'send-email'] , function (){
+            Route::get('/' , [UserController::class , 'showViewSendEmail'])->name('admin.users.sendEmail.showViewSendEmail');
+            Route::post('/send' , [UserController::class , 'sendEmail'])->name('admin.users.sendEmail.send');
+        });
+
+
+
     });
 });
