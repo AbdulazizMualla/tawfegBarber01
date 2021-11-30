@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('queue:work')->everyMinute();
         $schedule->command('queue:restart')->everyFiveMinutes();
-        $schedule->command('reservations:get')->everyFifteenMinutes();
+        $schedule->command('reservations:get')->everyMinute();
     }
 
     /**
