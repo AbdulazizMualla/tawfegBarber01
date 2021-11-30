@@ -44,8 +44,6 @@ class GetReservations extends Command
      */
     public function handle()
     {
-        Mail::to('amgad74@hotmail.com')->send(new SendEmailMail(['subject' => 'crontab' , 'message' => 'it is run now']));
-
         $reservations = Http::asForm()->post('https://tawfeg.com/api.php', [
             'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
         ]);
