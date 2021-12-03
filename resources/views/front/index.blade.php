@@ -58,7 +58,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="count-box">
                             <i class="icofont-simple-smile"></i>
-                            <span data-toggle="counter-up"></span>
+                            <span data-toggle="counter-up">{{$counts->user_info}}</span>
                             <p>عملائنا السعيدين</p>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
                         <div class="count-box">
                             <i class="icofont-ui-browser"></i>
-                            <span data-toggle="counter-up"></span>
+                            <span data-toggle="counter-up">{{$counts->count_users}}</span>
                             <p>عدد الزيارات</p>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
                         <div class="count-box">
                             <i class="icofont-live-support"></i>
-                            <span data-toggle="counter-up"></span>
+                            <span data-toggle="counter-up">{{$counts->count_contact}}</span>
                             <p>الدعم</p>
                         </div>
                     </div>
