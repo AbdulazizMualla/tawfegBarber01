@@ -58,7 +58,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="count-box">
                             <i class="icofont-simple-smile"></i>
-                            <span data-toggle="counter-up">{{$counts->user_info}}</span>
+                            <span data-toggle="counter-up">{{$counts->count_user_info}}</span>
                             <p>عملائنا السعيدين</p>
                         </div>
                     </div>

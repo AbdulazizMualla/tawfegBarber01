@@ -20,6 +20,7 @@ class HomeController extends Controller
        $counts = collect(DB::select("select(select count(id) from users) as count_users,
                                                   (select count(id) from contacts) as count_contact,
                                                   (select count(id) from user_infos) as count_user_info"))->first();
+       dd($counts);
         return view('front.index' ,  compact('counts'));
     }
 
