@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\SendEmailMail;
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Mail;
 
 class GetReservations extends Command
 {
@@ -48,6 +46,7 @@ class GetReservations extends Command
             'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
         ]);
         $users = User::all()->pluck('id')->toArray();
+
         $this->userExists($reservations->collect()->get('data'), $users);
         DB::beginTransaction();
         try {
@@ -64,12 +63,14 @@ class GetReservations extends Command
     public function userExists($reservations, $users)
     {
         foreach ($reservations as $reservation) {
+
             if (!in_array(intval($reservation['user_id']), $users)) {
+
                 $user = Http::asForm()->post('https://tawfeg.com/api.php', [
                     'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
                     'user_id' => $reservation['user_id']
                 ])->json()['data'];
-                User::create(
+                User::insert(
                     [
                         'id' => intval($user['id']),
                         'name' => $user['user_name'],
