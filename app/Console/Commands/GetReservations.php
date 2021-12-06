@@ -50,7 +50,8 @@ class GetReservations extends Command
         $this->userExists($reservations->collect()->get('data'), $users);
         DB::beginTransaction();
         try {
-            DB::delete('delete from reservations');
+            //DB::delete('delete from reservations');
+            Reservation::where('id' , '>' , 0)->delete();
             Reservation::insert($reservations->collect()->get('data'));
             DB::commit();
             $this->info('reservations created successful');
