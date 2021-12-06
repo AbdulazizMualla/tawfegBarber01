@@ -45,11 +45,11 @@ class GetReservations extends Command
         $reservations = Http::asForm()->post('https://tawfeg.com/api.php', [
             'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
         ]);
-        $users = User::all()->pluck('id')->toArray();
 
-        $this->userExists($reservations->collect()->get('data'), $users);
         DB::beginTransaction();
         try {
+            $users = User::all()->pluck('id')->toArray();
+            $this->userExists($reservations->collect()->get('data'), $users);
             //DB::delete('delete from reservations');
             Reservation::where('id' , '>' , 0)->delete();
             Reservation::insert($reservations->collect()->get('data'));
