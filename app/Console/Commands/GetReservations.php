@@ -83,6 +83,7 @@ class GetReservations extends Command
                         'created_at' => $user['create_at'],
                         'updated_at' => $user['create_at']
                     ]);
+                $users[] = intval($user['id']);
             }
         }
     }
