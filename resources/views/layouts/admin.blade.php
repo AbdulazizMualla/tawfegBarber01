@@ -49,7 +49,7 @@
                 <li>
                     <a href="{{route('logout')}}"
                     onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">تسجيل الخروج</a></li>
+                    document.getElementById('logout-form').submit();"><span class="fa fa-lock mr-3"></span> تسجيل الخروج</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
