@@ -18,7 +18,7 @@ class ReservationController extends Controller
 
     public function allReservation()
     {
-        $reservations = Reservation::with('user')->get();
+        $reservations = Reservation::with('user')->orderBy('date')->orderBy('time')->get();
         return view('admin.reservation.all' , compact('reservations'));
     }
 
