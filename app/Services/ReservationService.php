@@ -129,7 +129,7 @@ class ReservationService
      */
     private function getTimeFromService()
     {
-        return $this->service['minute'] > static::MIN_TIME ? $this->service['minute'] : static::MIN_TIME;
+        return max($this->service['minute'], static::MIN_TIME);
     }
 
     /**
@@ -189,12 +189,12 @@ class ReservationService
         $times = [];
         $time1 = $this->carbonFormatTime($this->startTime);
 
-        array_push($times, $time1->toTimeString());
+        $times[] = $time1->toTimeString();
 
         while ($time1->between($this->getStartTime(), $this->getEndTime())) {
             $time1 = $time1->addMinutes(static::MIN_TIME);
             if ($time1->between($this->getStartTime(), $this->getEndTime()) && $time1->lt($this->getEndTime()))
-                array_push($times, $time1->toTimeString());
+                $times[] = $time1->toTimeString();
         }
         return $times;
     }
@@ -245,7 +245,7 @@ class ReservationService
 
                 $cutTime = $this->cutValueFromArray($date , $index);
                 if (count($cutTime) < $this->countReservation || !$this->checkDifferentTimeBetweenTowTimes($cutTime)){
-                    array_push($indexValueDeleted , $index);
+                    $indexValueDeleted[] = $index;
                 }
             }
             if (count($indexValueDeleted) > 0){
