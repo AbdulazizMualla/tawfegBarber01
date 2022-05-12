@@ -32,7 +32,7 @@ class GodaddyGetUsers extends Command
     public function handle()
     {
         $users = Http::asForm()->post('https://tawfeg.com/api.php' , [
-            'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
+            'token' => env('KEY_GODADDY'),
             'users' => true
         ]);
         $this->getUserFromUsers($users->collect()->get('data'));
