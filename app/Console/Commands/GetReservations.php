@@ -43,7 +43,7 @@ class GetReservations extends Command
     public function handle()
     {
         $reservations = Http::asForm()->post('https://tawfeg.com/api.php', [
-            'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
+            'token' => env('KEY_GODADDY'),
         ]);
 
         DB::beginTransaction();
@@ -68,7 +68,7 @@ class GetReservations extends Command
             if (!in_array(intval($reservation['user_id']), $users)) {
 
                 $user = Http::asForm()->post('https://tawfeg.com/api.php', [
-                    'token' => '7318C4A2ABEFEDFE3890A1D23CB1CADA73D3B9E03EF64847FF5B393EB6199435',
+                    'token' => env('KEY_GODADDY'),
                     'user_id' => $reservation['user_id']
                 ])->json()['data'];
                 User::insert(
