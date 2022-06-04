@@ -37,16 +37,19 @@
                     <label for=""> <b>الجوال:</b> {{$res->user->phone}} </label>
                     <hr>
                     <div class="d-flex justify-content-center pb-2">
-                        <form class="" action="" method="post">
-                            <input type="hidden" name="r_id" value="">
+                        <form class="" action="{{route('admin.reservations.destroy' , $res)}}" method="post">
+                            @csrf
+                            @method('DELETE')
                             <button class="btn btn-sm btn-info"type="submit" ><i class="fa fa-check"></i></button>
                         </form>
-                        <form class="mr-3" action="" method="post">
-                            <input type="hidden" name="cancel_res" value="">
+                        <form class="mr-3" action="{{route('admin.reservations.cancel' , $res)}}" method="post">
+                            @csrf
+                            @method('DELETE')
                             <button class="btn btn-sm btn-danger"type="submit"><i class="fa fa-times"></i></button>
                         </form>
-                        <form class="mr-3" action="" method="post">
-                            <input type="hidden" name="block" value="">
+                        <form class="mr-3" action="{{route('admin.users.block.store')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{$res->user->id}}">
                             <button class="btn btn-sm btn-danger"type="submit"><i class="fa fa-ban"></i></button>
                         </form>
                     </div>
