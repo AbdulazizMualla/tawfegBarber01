@@ -12,7 +12,7 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        $reservations = Reservation::with('user')->where('date' , now()->format('d-m-Y'))->get();
+        $reservations = Reservation::with('user')->where('date' , now()->format('Y-m-d'))->get();
         return view('admin.reservation.index' , compact('reservations'));
     }
 
